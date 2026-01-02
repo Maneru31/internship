@@ -10,6 +10,10 @@ export const SubscriptionProvider = ({ children }) => {
     setIsSubscribed(true);
   };
 
+  const unsubscribe = () => {
+    setIsSubscribed(false);
+  };
+
   return (
     <SubscriptionContext.Provider
       value={{
@@ -17,6 +21,7 @@ export const SubscriptionProvider = ({ children }) => {
         selectedPlan,
         setSelectedPlan,
         subscribe,
+        unsubscribe,
       }}
     >
       {children}

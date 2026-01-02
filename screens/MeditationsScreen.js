@@ -16,7 +16,7 @@ const { width } = Dimensions.get('window');
 const isTablet = width > 768;
 
 const MeditationsScreen = ({ navigation }) => {
-  const { isSubscribed } = useSubscription();
+  const { isSubscribed, unsubscribe } = useSubscription();
 
   const meditations = [
     {
@@ -94,7 +94,7 @@ const MeditationsScreen = ({ navigation }) => {
               <Text style={styles.greeting}>Добро пожаловать</Text>
               <Text style={styles.title}>ZenPulse</Text>
             </View>
-            {!isSubscribed && (
+            {!isSubscribed ? (
               <TouchableOpacity
                 style={styles.premiumBadge}
                 onPress={() => navigation.navigate('Paywall')}
@@ -107,6 +107,13 @@ const MeditationsScreen = ({ navigation }) => {
                 >
                   <Text style={styles.premiumText}>Премиум</Text>
                 </LinearGradient>
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity
+                style={styles.demoBadge}
+                onPress={unsubscribe}
+              >
+                <Text style={styles.demoText}>Демо: Сбросить</Text>
               </TouchableOpacity>
             )}
           </View>
@@ -230,6 +237,17 @@ const styles = StyleSheet.create({
   premiumText: {
     color: '#FFFFFF',
     fontSize: isTablet ? 16 : 14,
+    fontWeight: '700',
+  },
+  demoBadge: {
+    backgroundColor: '#EF4444',
+    borderRadius: 20,
+    paddingHorizontal: isTablet ? 16 : 12,
+    paddingVertical: isTablet ? 10 : 8,
+  },
+  demoText: {
+    color: '#FFFFFF',
+    fontSize: isTablet ? 14 : 12,
     fontWeight: '700',
   },
   aiMoodCard: {
