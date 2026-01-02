@@ -308,6 +308,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: isTablet ? 'space-between' : 'center',
+    gap: isTablet ? 16 : 0,
   },
   upgradeBanner: {
     borderRadius: isTablet ? 20 : 16,

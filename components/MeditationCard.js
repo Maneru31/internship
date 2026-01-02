@@ -10,7 +10,10 @@ import {
 import { LinearGradient } from 'expo-linear-gradient';
 
 const { width } = Dimensions.get('window');
-const CARD_WIDTH = width > 768 ? (width - 60) / 2 : width - 40; // Адаптивная ширина для планшетов
+const isTablet = width > 768;
+// Для планшетов: 2 колонки с учетом padding (40*2=80) и gap (16)
+// Для телефонов: 1 колонка с учетом padding (20*2=40)
+const CARD_WIDTH = isTablet ? (width - 80 - 16) / 2 : width - 40;
 
 const MeditationCard = ({ title, duration, image, isLocked, onPress }) => {
   return (
